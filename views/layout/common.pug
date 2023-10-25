@@ -1,0 +1,238 @@
+doctype html
+html(lang='en')
+  head
+    block title
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // ===============================================================================================
+    link(rel='icon', type='image/png', href='images/icons/favicon.png')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='vendor/bootstrap/css/bootstrap.min.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='fonts/font-awesome-4.7.0/css/font-awesome.min.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='fonts/themify/themify-icons.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='fonts/Linearicons-Free-v1.0.0/icon-font.min.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='fonts/elegant-font/html-css/style.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='vendor/animate/animate.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='vendor/css-hamburgers/hamburgers.min.css')
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='vendor/animsition/css/animsition.min.css')
+    // ===============================================================================================
+    block head
+    // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='css/util.css')
+    link(rel='stylesheet', type='text/css', href='css/main.css')
+    // ===============================================================================================
+  body.animsition
+    // Header
+    header.header1
+      // Header desktop
+      .container-menu-header
+        .topbar
+          .topbar-social
+            a.topbar-social-item.fa.fa-facebook(href='https://github.com/cuongw')
+            a.topbar-social-item.fa.fa-instagram(href='https://github.com/cuongw')
+            a.topbar-social-item.fa.fa-pinterest-p(href='https://github.com/cuongw')
+            a.topbar-social-item.fa.fa-snapchat-ghost(href='https://github.com/cuongw')
+            a.topbar-social-item.fa.fa-youtube-play(href='https://github.com/cuongw')
+          span.topbar-child1
+            | Free shipping for standard order over $100
+          .topbar-child2
+            span.topbar-email
+              | info@fashionshop.com
+            .topbar-language.rs1-select2
+              select.selection-1(name='time')
+                option USD
+                option EUR
+        .wrap_header
+          // Logo
+          a.logo(href='/')
+            img(src='images/icons/logo.png', alt='IMG-LOGO')
+          // Menu
+          .wrap_menu
+            nav.menu
+              ul.main_menu
+                li
+                  a(href='/') Home
+                li
+                  a(href='/products') Shop
+                li.sale-noti
+                  a(href='/products') Sale
+                li
+                  a(href='/cart') Features
+                li
+                  a(href='/blog') Blog
+                li
+                  a(href='/about') About
+                li
+                  a(href='/contact') Contact
+          // Header Icon
+          .header-icons
+            a.header-wrapicon1.dis-block(href='#')
+              img.header-icon1(src='images/icons/icon-header-01.png', alt='ICON')
+            span.linedivide1
+            a.header-wrapicon2(href='/cart')
+              img.header-icon1.js-show-header-dropdown(src='images/icons/icon-header-02.png', alt='ICON')
+              span#quantity.header-icons-noti 0
+      // Header Mobile
+      .wrap_header_mobile
+        // Logo moblie
+        a.logo-mobile(href='/')
+          img(src='images/icons/logo.png', alt='IMG-LOGO')
+        // Button show menu
+        .btn-show-menu
+          // Header Icon mobile
+          .header-icons-mobile
+            a.header-wrapicon1.dis-block(href='#')
+              img.header-icon1(src='images/icons/icon-header-01.png', alt='ICON')
+            span.linedivide2
+            a.header-wrapicon2(href='/cart')
+              img.header-icon1.js-show-header-dropdown(src='images/icons/icon-header-02.png', alt='ICON')
+              span#quantity.header-icons-noti 0
+          .btn-show-menu-mobile.hamburger.hamburger--squeeze
+            span.hamburger-box
+              span.hamburger-inner
+      // Menu Mobile
+      .wrap-side-menu
+        nav.side-menu
+          ul.main-menu
+            li.item-topbar-mobile.p-l-20.p-t-8.p-b-8
+              span.topbar-child1
+                | Free shipping for standard order over $100
+            li.item-topbar-mobile.p-l-20.p-t-8.p-b-8
+              .topbar-child2-mobile
+                span.topbar-email
+                  | info@tingfashion.com
+                .topbar-language.rs1-select2
+                  select.selection-1(name='time')
+                    option USD
+                    option EUR
+            li.item-topbar-mobile.p-l-10
+              .topbar-social-mobile
+                a.topbar-social-item.fa.fa-facebook(href='#')
+                a.topbar-social-item.fa.fa-instagram(href='#')
+                a.topbar-social-item.fa.fa-pinterest-p(href='#')
+                a.topbar-social-item.fa.fa-snapchat-ghost(href='#')
+                a.topbar-social-item.fa.fa-youtube-play(href='#')
+            li.item-menu-mobile
+              a(href='/') Home
+            li.item-menu-mobile
+              a(href='/products') Shop
+            li.item-menu-mobile
+              a(href='/products') Sale
+            li.item-menu-mobile
+              a(href='/cart') Features
+            li.item-menu-mobile
+              a(href='/blog') Blog
+            li.item-menu-mobile
+              a(href='/about') About
+            li.item-menu-mobile
+              a(href='/contact') Contact
+    
+    // Content
+    block content
+
+    // Footer
+    footer.bg6.p-t-45.p-b-43.p-l-45.p-r-45
+      .flex-w.p-b-90
+        .w-size6.p-t-30.p-l-15.p-r-15.respon3
+          h4.s-text12.p-b-30
+            | GET IN TOUCH
+          div
+            p.s-text7.w-size27
+              | Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+            .flex-m.p-t-30
+              a.fs-18.color1.p-r-20.fa.fa-facebook(href='#')
+              a.fs-18.color1.p-r-20.fa.fa-instagram(href='#')
+              a.fs-18.color1.p-r-20.fa.fa-pinterest-p(href='#')
+              a.fs-18.color1.p-r-20.fa.fa-snapchat-ghost(href='#')
+              a.fs-18.color1.p-r-20.fa.fa-youtube-play(href='#')
+        .w-size7.p-t-30.p-l-15.p-r-15.respon4
+          h4.s-text12.p-b-30
+            | Categories
+          ul
+            li.p-b-9
+              a.s-text7(href='#')
+                | Men
+            li.p-b-9
+              a.s-text7(href='#')
+                | Women
+            li.p-b-9
+              a.s-text7(href='#')
+                | Dresses
+            li.p-b-9
+              a.s-text7(href='#')
+                | Sunglasses
+        .w-size7.p-t-30.p-l-15.p-r-15.respon4
+          h4.s-text12.p-b-30
+            | Links
+          ul
+            li.p-b-9
+              a.s-text7(href='#')
+                | Search
+            li.p-b-9
+              a.s-text7(href='#')
+                | About Us
+            li.p-b-9
+              a.s-text7(href='#')
+                | Contact Us
+            li.p-b-9
+              a.s-text7(href='#')
+                | Returns
+        .w-size7.p-t-30.p-l-15.p-r-15.respon4
+          h4.s-text12.p-b-30
+            | Help
+          ul
+            li.p-b-9
+              a.s-text7(href='#')
+                | Track Order
+            li.p-b-9
+              a.s-text7(href='#')
+                | Returns
+            li.p-b-9
+              a.s-text7(href='#')
+                | Shipping
+            li.p-b-9
+              a.s-text7(href='#')
+                | FAQs
+        .w-size8.p-t-30.p-l-15.p-r-15.respon3
+          h4.s-text12.p-b-30
+            | Newsletter
+          form
+            .effect1.w-size9
+              input.s-text7.bg6.w-full.p-b-5(type='text', name='email', placeholder='email@example.com')
+              span.effect1-line
+            .w-size2.p-t-20
+              // Button
+              button.flex-c-m.size2.bg4.bo-rad-23.hov1.m-text3.trans-0-4
+                | Subscribe
+      .t-center.p-l-15.p-r-15
+        a(href='#')
+          img.h-size2(src='images/icons/paypal.png', alt='IMG-PAYPAL')
+        a(href='#')
+          img.h-size2(src='images/icons/visa.png', alt='IMG-VISA')
+        a(href='#')
+          img.h-size2(src='images/icons/mastercard.png', alt='IMG-MASTERCARD')
+        a(href='#')
+          img.h-size2(src='images/icons/express.png', alt='IMG-EXPRESS')
+        a(href='#')
+          img.h-size2(src='images/icons/discover.png', alt='IMG-DISCOVER')
+        .t-center.s-text8.p-t-20
+          | Copyright © 2018 All rights reserved. | This template is made with 
+          i.fa.fa-heart-o(aria-hidden='true')
+          |  by 
+          a(href='https://colorlib.com', target='_blank') Colorlib
+    // Back to top
+    #myBtn.btn-back-to-top.bg0-hov
+      span.symbol-btn-back-to-top
+        i.fa.fa-angle-double-up(aria-hidden='true')
+    // Container Selection1
+    #dropDownSelect1
+      // Container Selection2
+    #dropDownSelect2
+    block script

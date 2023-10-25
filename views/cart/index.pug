@@ -1,0 +1,272 @@
+extends ../layout/common
+block title
+	title Cart
+block head
+	link(rel='stylesheet', type='text/css', href='vendor/select2/select2.min.css')
+	// ===============================================================================================
+	link(rel='stylesheet', type='text/css', href='vendor/slick/slick.css')
+block content
+	// Title Page
+	section.bg-title-page.p-t-40.p-b-50.flex-col-c-m(style='background-image: url(images/heading-pages-01.jpg);')
+		h2.l-text2.t-center
+			| Cart
+	// Cart
+	section.cart.bgwhite.p-t-70.p-b-100
+		.container
+			// Cart item
+			.container-table-cart.pos-relative
+				.wrap-table-shopping-cart.bgwhite
+					table.table-shopping-cart
+						tbody
+							tr.table-head
+								th.column-1
+								th.column-2 Product
+								th.column-3 Price
+								th.column-4.p-l-70 Quantity
+								th.column-5 Total
+							- var subTotal = 0
+							each item in cart
+								tr.table-row(id=`table-row-${JSON.stringify(item.product._id)}`)
+									- subTotal += item.quantity * item.product.price
+									td.column-1
+										button.cart-img-product.b-rad-4.o-f-hidden(onclick=`removeProduct(${JSON.stringify(item.product._id)}, ${JSON.stringify(item.product.price)})`)
+											img(src=item.product.image, alt='IMG-PRODUCT')
+									td.column-2= item.product.name
+									td.column-3 $#{item.product.price}
+									td.column-4
+										.flex-w.bo5.of-hidden.w-size17
+											button.btn-num-product-down.color1.flex-c-m.size7.bg8.eff2(onclick=`decreaseQuantity(${JSON.stringify(item.product._id)}, ${JSON.stringify(item.product.price)})`)
+												i.fs-12.fa.fa-minus(aria-hidden='true')
+											div
+											input.size8.m-text18.t-center.num-product(id=`quantity-${JSON.stringify(item.product._id)}` type='number', name='num-product1', value=item.quantity)
+											div
+											button.btn-num-product-up.color1.flex-c-m.size7.bg8.eff2(onclick=`increaseQuantity(${JSON.stringify(item.product._id)}, ${JSON.stringify(item.product.price)})`)
+												i.fs-12.fa.fa-plus(aria-hidden='true')
+									td.column-5(id=`total-${JSON.stringify(item.product._id)}`) $#{item.quantity * item.product.price}
+			.flex-w.flex-sb-m.p-t-25.p-b-25.bo8.p-l-35.p-r-60.p-lr-15-sm
+				.flex-w.flex-m.w-full-sm
+					.size11.bo4.m-r-10
+						input#couponInput.sizefull.s-text7.p-l-22.p-r-22.m-b-7(type='text', name='coupon-code', placeholder='Coupon Code')
+						span#couponInfo.m-text18.w-size20.w-full-sm(style='color:#e65540;padding-left:10px')
+					.size12.trans-0-4.m-t-10.m-b-10.m-r-10
+						// Button
+						button.flex-c-m.sizefull.bg1.bo-rad-23.hov1.s-text1.trans-0-4(onclick='getCoupon()')
+							| Apply coupon
+			// Total
+			.bo9.w-size18.p-l-40.p-r-40.p-t-30.p-b-38.m-t-30.m-r-0.m-l-auto.p-lr-15-sm
+				h5.m-text20.p-b-24
+					| Cart Totals
+				// 
+				.flex-w.flex-sb-m.p-b-12
+					span.s-text18.w-size19.w-full-sm
+						| Subtotal:
+					span#sub-total.m-text21.w-size20.w-full-sm
+						| $#{subTotal}
+				// 
+				.flex-w.flex-sb-m.p-b-12
+					span.s-text18.w-size19.w-full-sm
+						| Discount:
+					span#discount.m-text21.w-size20.w-full-sm
+						| Nothing
+				// 
+				.flex-w.flex-sb.bo10.p-t-15.p-b-20
+					span.s-text18.w-size19.w-full-sm
+						| Shipping:
+					.w-size20.w-full-sm
+						p#shippingCost.s-text8.p-b-23
+							| There are no shipping methods available. Please double check your address, or contact us if you need any help.
+						span.s-text19
+							| Calculate Shipping
+						.rs2-select2.rs3-select2.rs4-select2.bo4.of-hidden.w-size21.m-t-8.m-b-12
+							select#countrySelect.selection-2(name='country')
+								option Select a country...
+								each country in countries
+									option= country.countryName
+						.size13.bo4.m-b-12
+							input#countryInput.sizefull.s-text7.p-l-15.p-r-15(type='text', name='state', placeholder='State / country')
+						.size13.bo4.m-b-22
+							input#zipInput.sizefull.s-text7.p-l-15.p-r-15(type='text', name='postcode', placeholder='Postcode / Zip')
+						.size14.trans-0-4.m-b-10
+							// Button
+							button.flex-c-m.sizefull.bg1.bo-rad-23.hov1.s-text1.trans-0-4(onclick='getShippingCost()')
+								| Update Totals
+				// 
+				.flex-w.flex-sb-m.p-t-26.p-b-30
+					span.m-text22.w-size19.w-full-sm
+						| Total:
+					span#totalPrice.m-text21.w-size20.w-full-sm
+						| $#{subTotal}
+				.size15.trans-0-4
+					// Button
+					button.flex-c-m.sizefull.bg1.bo-rad-23.hov1.s-text1.trans-0-4
+						| Proceed to Checkout
+block script
+	script(type='text/javascript', src='vendor/jquery/jquery-3.2.1.min.js')
+	// ===============================================================================================
+	script(type='text/javascript', src='vendor/animsition/js/animsition.min.js')
+	// ===============================================================================================
+	script(type='text/javascript', src='vendor/bootstrap/js/popper.js')
+	script(type='text/javascript', src='vendor/bootstrap/js/bootstrap.min.js')
+	// ===============================================================================================
+	script(type='text/javascript', src='vendor/select2/select2.min.js')
+	script(type='text/javascript').
+		$(".selection-1").select2({
+		minimumResultsForSearch: 20,
+		dropdownParent: $('#dropDownSelect1')
+		});
+		$(".selection-2").select2({
+		minimumResultsForSearch: 20,
+		dropdownParent: $('#dropDownSelect2')
+		});
+	// ===============================================================================================
+	script(type='text/javascript', src='https://unpkg.com/axios/dist/axios.min.js')
+	script(type='text/javascript').
+		// Get quantity products
+		const getQuantity = async () => {
+			const res = await axios.get('/cart/quantity')
+			const quantityElement = document.getElementById('quantity')
+			quantityElement.innerHTML = res.data.quantity
+		}
+
+		// increase quantity
+		const increaseQuantity = async (productId, price) => {
+			const res = await axios.get(`/cart/increaseQuantity/${productId}`)
+
+			// update quantity of this product
+			const quantityInput = document.getElementById(`quantity-${JSON.stringify(productId)}`)
+			quantityInput.value = res.data.quantity
+
+			// update total of this product
+			const total = document.getElementById(`total-${JSON.stringify(productId)}`)
+			total.innerHTML = '$' + `${price * res.data.quantity}`
+
+			// update sub total
+			const subTotal = document.getElementById('sub-total')
+			let subTotalValue = subTotal.innerHTML.split('$')[1]
+			subTotalValue = parseInt(subTotalValue) + price
+			subTotal.innerHTML = '$' + `${subTotalValue}`
+
+			calculateTotalPrice()
+		}
+
+		// decrease quantity
+		const decreaseQuantity = async (productId, price) => {
+			const res = await axios.get(`/cart/decreaseQuantity/${productId}`)
+
+			if (res.data.quantity === 0) {
+				const idTableRow = `table-row-${JSON.stringify(productId)}`
+				document.getElementById(idTableRow).remove()
+
+				// update total quantity
+				getQuantity()
+			} else {
+				// update quantity of this product
+				const quantityInput = document.getElementById(`quantity-${JSON.stringify(productId)}`)
+				quantityInput.value = res.data.quantity
+
+				// update total of this product
+				const total = document.getElementById(`total-${JSON.stringify(productId)}`)
+				total.innerHTML = '$' + `${price * res.data.quantity}`
+			}
+
+			// update sub total
+			const subTotal = document.getElementById('sub-total')
+			let subTotalValue = subTotal.innerHTML.split('$')[1]
+			subTotalValue = parseInt(subTotalValue) - price
+			subTotal.innerHTML = '$' + `${subTotalValue}`
+
+			calculateTotalPrice()
+		}
+
+		// remove product
+		const removeProduct = (productId, price) => {
+			const idTableRow = `table-row-${JSON.stringify(productId)}`
+			document.getElementById(idTableRow).remove()
+
+			// update sub total
+			const subTotal = document.getElementById('sub-total')
+			let subTotalValue = subTotal.innerHTML.split('$')[1]
+			subTotalValue = parseInt(subTotalValue) - price
+			subTotal.innerHTML = '$' + `${subTotalValue}`
+
+			// remove product
+			axios.delete(`/cart/${productId}`)
+			
+			// update total quantity
+			const quantityElement = document.getElementById('quantity')
+			const totalQuantity = parseInt(quantityElement.innerHTML) - 1
+			quantityElement.innerHTML = totalQuantity
+
+			calculateTotalPrice()
+		}
+
+		//- get coupon code
+		const getCoupon = async () => {
+			//- check coupon code exists or not
+			const inputElement = document.getElementById('couponInput')
+			if (!inputElement.value) {
+				document.getElementById('couponInfo').innerHTML = ''
+				document.getElementById('discount').innerHTML = 'Nothing'
+				return
+			}
+
+			const coupon = await axios.get(`/coupons/${inputElement.value}`)
+
+			const result = coupon.data ? coupon.data.discount : 'Coupon Code is not valid!'
+
+			document.getElementById('couponInfo').innerHTML = result
+			document.getElementById('discount').innerHTML = result
+			calculateTotalPrice()
+		}
+
+		//- get shipping cost
+		const getShippingCost = () => {
+			const countrySelect = document.getElementById('countrySelect')
+			const countryInput = document.getElementById('countryInput')
+			const zipInput = document.getElementById('zipInput')
+
+			const isInputValid = countrySelect.value !== 'Select a country...' && countryInput.value && zipInput.value
+
+			// create fake shipping cost
+			const fakeCost = Math.round(Math.random() * 10)
+			const resultText = isInputValid
+				? `$${fakeCost}`
+				: 'There are no shipping methods available. Please double check your address, or contact us if you need any help.'
+
+			document.getElementById('shippingCost').innerHTML = resultText
+			calculateTotalPrice()
+		}
+
+		//- calculate total price
+		const calculateTotalPrice = () => {
+			const subTotal = document.getElementById('sub-total')
+			let subTotalValue = subTotal.innerHTML.split('$')[1]
+			let totalPrice = parseInt(subTotalValue)
+
+			// discount value
+			let discountValue = document.getElementById('discount').innerHTML
+			if (/^((\$\d+)|(\d+%))$/g.test(discountValue)) {
+				if (discountValue.indexOf('%') !== -1) {
+					discountValue = discountValue.replace('%', '')
+					totalPrice = totalPrice * (100 - parseInt(discountValue)) / 100
+				}
+				if (discountValue.indexOf('$') !== -1) {
+					discountValue = discountValue.replace('$', '')
+					totalPrice -= parseInt(discountValue)		
+				}
+			}
+
+			// shipping cost
+			let shippingCostValue = document.getElementById('shippingCost').innerHTML
+			if (/^\$\d+$/.test(shippingCostValue)) {
+				shippingCostValue = shippingCostValue.replace('$', '')
+				totalPrice += parseInt(shippingCostValue)
+			}
+
+			// set total price
+			document.getElementById('totalPrice').innerHTML = '$' + totalPrice
+		}
+		
+		window.onload = getQuantity
+	// ===============================================================================================
+	script(src='js/main.js')

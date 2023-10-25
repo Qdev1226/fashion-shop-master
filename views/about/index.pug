@@ -1,0 +1,60 @@
+extends ../layout/common
+block title
+	title About
+block head
+	link(rel='stylesheet', type='text/css', href='vendor/select2/select2.min.css')
+	// ===============================================================================================
+	link(rel='stylesheet', type='text/css', href='vendor/slick/slick.css')
+block content
+	// Title Page
+	section.bg-title-page.p-t-40.p-b-50.flex-col-c-m(style='background-image: url(images/heading-pages-06.jpg);')
+		h2.l-text2.t-center
+			| About
+	// content page
+	section.bgwhite.p-t-66.p-b-38
+		.container
+			.row
+				.col-md-4.p-b-30
+					.hov-img-zoom
+						img(src='images/banner-14.jpg', alt='IMG-ABOUT')
+				.col-md-8.p-b-30
+					h3.m-text26.p-t-15.p-b-16
+						| Our story
+					p.p-b-28
+						| Phasellus egestas nisi nisi, lobortis ultricies risus semper nec. Vestibulum pharetra ac ante ut pellentesque. Curabitur fringilla dolor quis lorem accumsan, vitae molestie urna dapibus. Pellentesque porta est ac neque bibendum viverra. Vivamus lobortis magna ut interdum laoreet. Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. Vivamus tristique vulputate ultricies. Sed vitae ultrices orci.
+					.bo13.p-l-29.m-l-9.p-b-10
+						p.p-b-11
+							| Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while.
+						span.s-text7
+							| - Steve Job’s
+block script
+	script(type='text/javascript', src='vendor/jquery/jquery-3.2.1.min.js')
+	// ===============================================================================================
+	script(type='text/javascript', src='vendor/animsition/js/animsition.min.js')
+	// ===============================================================================================
+	script(type='text/javascript', src='vendor/bootstrap/js/popper.js')
+	script(type='text/javascript', src='vendor/bootstrap/js/bootstrap.min.js')
+	// ===============================================================================================
+	script(type='text/javascript', src='vendor/select2/select2.min.js')
+	script(type='text/javascript').
+		$(".selection-1").select2({
+		minimumResultsForSearch: 20,
+		dropdownParent: $('#dropDownSelect1')
+		});
+		$(".selection-2").select2({
+		minimumResultsForSearch: 20,
+		dropdownParent: $('#dropDownSelect2')
+		});
+	// ===============================================================================================
+	script(type='text/javascript', src='https://unpkg.com/axios/dist/axios.min.js')
+	script(type='text/javascript').
+		// Get quantity products
+		const getQuantity = async () => {
+			const res = await axios.get('/cart/quantity')
+			const quantityElement = document.getElementById('quantity')
+			quantityElement.innerHTML = res.data.quantity
+		}
+
+		window.onload = getQuantity
+	// ===============================================================================================
+	script(src='js/main.js')
